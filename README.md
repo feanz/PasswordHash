@@ -23,4 +23,17 @@ Is the hash algorithm used to generates the actual hash from the password cleart
 
 The System.Web.Helper uses the same set up to hash password but unlike the membership reboot does not allow you to set an iteration count or provide an increasing default it just uses a constant count of 1000.   
 
+### Code example
 
+    var sut = new DefaultCrypto();
+
+    var password = "password";
+	//uses iteration based on currnt year
+    var hash = sut.HashPassword(password);
+
+    var isValid = sut.VerifyHashedPassword(hash, password);
+
+	//or set the iteration
+	var hash = sut.HashPassword(password, 10000);
+
+    var isValid = sut.VerifyHashedPassword(hash, password);
